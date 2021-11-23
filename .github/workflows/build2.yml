@@ -52,44 +52,19 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: pokeheartgold_built5
-          path: pokeheartgold.us.nds
+          name: pokeheartgold_built
+          path: build/heartgold.us/pokeheartgold.us.nds
           
-      - uses: actions/upload-artifact@v2
-        with:
-          name: pokeheartgold_built3
-          path: pokeheartgold.nds
-
       - name: Build SoulSilver
         env:
           GAME_VERSION: SOULSILVER
           GAME_LANGUAGE: ENGLISH
           GAME_REVISION: 0
         run: make
-        
-      - uses: actions/upload-artifact@v2
-        with:
-          name: pokeheartgold_built
-          path: pokeheartgold.us.nds
-          
-      - uses: actions/upload-artifact@v2
-        with:
-          name: pokeheartgold_built2
-          path: pokeheartgold.nds
-          
+
       - name: Webhook
         if: ${{ github.event_name == 'push' }}
         run: |
           sudo chmod 755 $GITHUB_WORKSPACE/.github/calcrom/webhook.sh
           $GITHUB_WORKSPACE/.github/calcrom/webhook.sh pokeheartgold "$CALCROM_WEBHOOK_URL"
         continue-on-error: true
-        
-      - uses: actions/upload-artifact@v2
-        with:
-          name: pokeheartgold_built4
-          path: pokeheartgold.nds
-          
-      - uses: actions/upload-artifact@v2
-        with:
-          name: pokeheartgold_built6
-          path: pokeheartgold.us.nds
