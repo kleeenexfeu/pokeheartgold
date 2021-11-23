@@ -62,6 +62,11 @@ jobs:
           name: pokeheartgold_built
           path: pokeheartgold.us.nds
           
+      - uses: actions/upload-artifact@v2
+        with:
+          name: pokeheartgold_built2
+          path: pokeheartgold.nds
+          
       - name: Webhook
         if: ${{ github.event_name == 'push' }}
         run: |
